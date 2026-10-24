@@ -1,11 +1,11 @@
 import pandas as pd
 
 # 1. CARGA DE DATASETS
-df_marketing = pd.read_csv('campanas_marketing.csv')
-df_productos = pd.read_csv('productos.csv')
-df_crm = pd.read_csv('interacciones_crm.csv')
-df_transacciones = pd.read_csv('transacciones.csv')
-df_devoluciones = pd.read_csv('devoluciones.csv')
+df_marketing = pd.read_csv('C:\\Users\\Diego Hernandez\\OneDrive\\Escritorio\\Proyecto 01 Analitica de Retail\\csvCrudos\\campanas_marketing.csv')
+df_productos = pd.read_csv('C:\\Users\\Diego Hernandez\\OneDrive\\Escritorio\\Proyecto 01 Analitica de Retail\\csvCrudos\\productos.csv')
+df_crm = pd.read_csv('C:\\Users\\Diego Hernandez\\OneDrive\\Escritorio\\Proyecto 01 Analitica de Retail\\csvCrudos\\interacciones_crm.csv')
+df_transacciones = pd.read_csv('C:\\Users\\Diego Hernandez\\OneDrive\\Escritorio\\Proyecto 01 Analitica de Retail\\csvCrudos\\transacciones.csv')
+df_devoluciones = pd.read_csv('C:\\Users\\Diego Hernandez\\OneDrive\\Escritorio\\Proyecto 01 Analitica de Retail\\csvCrudos\\devoluciones.csv')
 
 # 2. LIMPIEZA: FALSAS CONVERSIONES DE MARKETING
 df_marketing['fecha_envio'] = pd.to_datetime(df_marketing['fecha_envio'])
@@ -53,5 +53,12 @@ df_productos.to_csv('productos_limpio.csv', index=False)
 df_crm.to_csv('interacciones_crm_limpio.csv', index=False)
 df_transacciones.to_csv('transacciones_limpio.csv', index=False)
 df_devoluciones.to_csv('devoluciones_limpio.csv', index=False)
+
+# 7. LIMPIEZA Y EXPORTACIÓN DE CLIENTES
+df_clientes = pd.read_csv(r'C:\Users\Diego Hernandez\OneDrive\Escritorio\Proyecto 01 Analitica de Retail\csvCrudos\clientes.csv')
+df_clientes = df_clientes.drop_duplicates()
+df_clientes = df_clientes.dropna(subset=['cliente_id'])
+df_clientes.to_csv('clientes_limpio.csv', index=False)
+print("Archivo clientes_limpio.csv generado.")
 
 print("Depuración finalizada. Archivos limpios generados exitosamente.")
